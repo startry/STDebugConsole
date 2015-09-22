@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  STDebugConsole: b779741fb6dc97b430c37e212319f9f699fa113c
+  STDebugConsole: 57c3e311e788dc1cb14f0c6aea33a931c00871cb
 
 COCOAPODS: 0.38.2
