@@ -4,7 +4,7 @@ STDebugConsole is an In-App debug console for your iOS Application
 
 Not Ready Now!
 
-[![CI Status](http://img.shields.io/travis/chenxing.cx/STDebugConsole.svg?style=flat)](https://travis-ci.org/chenxing.cx/STDebugConsole)
+[![CI Status](http://img.shields.io/travis/startry/STDebugConsole.svg?style=flat)](https://travis-ci.org/startry/STDebugConsole)
 [![Version](https://img.shields.io/cocoapods/v/STDebugConsole.svg?style=flat)](http://cocoapods.org/pods/STDebugConsole)
 [![License](https://img.shields.io/cocoapods/l/STDebugConsole.svg?style=flat)](http://cocoapods.org/pods/STDebugConsole)
 [![Platform](https://img.shields.io/cocoapods/p/STDebugConsole.svg?style=flat)](http://cocoapods.org/pods/STDebugConsole)
