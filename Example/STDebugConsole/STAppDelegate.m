@@ -7,12 +7,24 @@
 //
 
 #import "STAppDelegate.h"
+#import "STViewController.h"
+#import <STDebugConsole/STDebugConsole.h>
 
 @implementation STAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [STDebugConsole setModel:STDebugConsoleModelRedirect];
+    
+    CGRect bounds = [UIScreen mainScreen].bounds;
+    
+    self.window = [[UIWindow alloc] initWithFrame:bounds];
+    STViewController *vc = [[STViewController alloc] init];
+    
+    self.window.rootViewController = vc;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
