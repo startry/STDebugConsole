@@ -16,7 +16,9 @@ s.summary          = "Debug Console in your application."
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
-s.description      = <<-Console insert your application, you can see console log in your Application
+s.description      = <<-DESC
+                     Redirect NSLog to file system, and print all log in App. Tester can see all log info in application.
+                     DESC
 
 s.homepage         = "https://github.com/startry/STDebugConsole"
 # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
