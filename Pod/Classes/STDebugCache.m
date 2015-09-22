@@ -29,7 +29,7 @@
 }
 
 - (void) redirectNSLogToFileSystem{
-    freopen([[self logFilePath] fileSystemRepresentation],"a+",stderr);
+    freopen([[self logFilePath] fileSystemRepresentation],"a+", stderr);
 }
 
 - (NSArray *) logFileContent{
