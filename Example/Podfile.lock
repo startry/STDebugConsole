@@ -1,5 +1,5 @@
 PODS:
-  - STDebugConsole (0.1.0)
+  - STDebugConsole (0.1.1)
 
 DEPENDENCIES:
   - STDebugConsole (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  STDebugConsole: 57c3e311e788dc1cb14f0c6aea33a931c00871cb
+  STDebugConsole: f07227199c0f906953e84f1d12e1fec4a9fc60d7
 
 COCOAPODS: 0.38.2
