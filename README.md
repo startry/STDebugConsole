@@ -13,6 +13,19 @@ Not Ready Now!
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+1. Add redirect code to your aplication.
+
+```Objective-C
+    [STDebugConsole setModel:STDebugConsoleModelRedirect];
+```
+
+2. present STDebugConsoleViewController anywhere.
+
+```Objective-C
+   STDebugConsoleViewController *consoleVC = [[STDebugConsoleViewController alloc] init];
+   [self presentViewController:consoleVC animated:YES completion:nil];
+```
+
 ## Requirements
 
 iOS 7.0+
