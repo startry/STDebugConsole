@@ -8,6 +8,7 @@
 
 #import "STViewController.h"
 #import <STDebugConsole/STDebugConsole.h>
+#import <STDebugConsole/STDebugConsoleViewController.h>
 
 @interface STViewController ()
 
@@ -36,7 +37,22 @@
             [btn setTitle:@"show console" forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(didConsoleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         }else{
-            [btn setTitle:[NSString stringWithFormat:@"print log %d", i] forState:UIControlStateNormal];
+            
+            switch (i) {
+                case 1:
+                    [btn setTitle:@"print warning" forState:UIControlStateNormal];
+                    break;
+                case 2:
+                    [btn setTitle:@"print error" forState:UIControlStateNormal];
+                    break;
+                case 3:
+                    [btn setTitle:@"print debug" forState:UIControlStateNormal];
+                    break;
+                default:
+                    [btn setTitle:[NSString stringWithFormat:@"print log %d", i] forState:UIControlStateNormal];
+                    break;
+            }
+            
             [btn addTarget:self action:@selector(didButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
@@ -44,11 +60,27 @@
 
 #pragma mark - Button Event
 - (void) didButtonClicked:(UIButton *) btn{
-    NSLog(@"print button tag: %ld", (long)btn.tag);
+    switch (btn.tag) {
+        case 1:
+            NSLog(@"[warning] is logging");
+            break;
+        case 2:
+            NSLog(@"[error] is print");
+            break;
+        case 3:
+            NSLog(@"[debug] is called");
+            break;
+        default:
+            for (int i = 0; i < 10000; i++) {
+                NSLog(@"print button tag: %ld", (long)btn.tag);
+            }
+            break;
+    }
 }
 
 - (void) didConsoleButtonClicked:(id)sender{
-    [STDebugConsole showorCloseConsoleAnimated:YES];
+    STDebugConsoleViewController *vc = [[STDebugConsoleViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end
