@@ -2,7 +2,7 @@
 
 STDebugConsole is an In-App debug console for your iOS Application
 
-Not Ready Now!
+**Still Developing, and the simplest demo (tag 0.1.0) was ready.
 
 [![CI Status](http://img.shields.io/travis/startry/STDebugConsole.svg?style=flat)](https://travis-ci.org/startry/STDebugConsole)
 [![Version](https://img.shields.io/cocoapods/v/STDebugConsole.svg?style=flat)](http://cocoapods.org/pods/STDebugConsole)
@@ -13,13 +13,12 @@ Not Ready Now!
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-1. Add redirect code to your aplication.
+**step1:** Add redirect code to your aplication.
 
 ```Objective-C
     [STDebugConsole setModel:STDebugConsoleModelRedirect];
 ```
-
-2. present STDebugConsoleViewController anywhere.
+**step2:** present STDebugConsoleViewController anywhere.
 
 ```Objective-C
    STDebugConsoleViewController *consoleVC = [[STDebugConsoleViewController alloc] init];
