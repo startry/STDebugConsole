@@ -9,6 +9,8 @@ STDebugConsole is an In-App debug console for your iOS Application
 [![License](https://img.shields.io/cocoapods/l/STDebugConsole.svg?style=flat)](http://cocoapods.org/pods/STDebugConsole)
 [![Platform](https://img.shields.io/cocoapods/p/STDebugConsole.svg?style=flat)](http://cocoapods.org/pods/STDebugConsole)
 
+![Console in App](https://raw.githubusercontent.com/startry/STDebugConsole/master/img/screenshot_1.png)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
