@@ -18,16 +18,12 @@
     }
 }
 
-+ (void)showorCloseConsoleAnimated:(BOOL)animation{
-    UIViewController *currentVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController *presentedVC = [UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController;
++ (void)setColor:(id)color withSearchKey:(NSString *)searchKey{
+    [[STDebugCache sharedInstance] setColor:color withSearchKey:searchKey];
+}
+
++ (void)setDefaultColor:(UIColor *)defaultColor{
     
-    if ([presentedVC isKindOfClass:[STDebugConsoleViewController class]]) {
-        [presentedVC dismissViewControllerAnimated:YES completion:nil];
-    }else{
-        STDebugConsoleViewController *consoleVC = [[STDebugConsoleViewController alloc] init];
-        [currentVC presentViewController:consoleVC animated:animation completion:nil];
-    }
 }
 
 @end

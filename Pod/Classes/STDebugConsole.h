@@ -6,13 +6,15 @@
 //  Copyright © 2015 Startry. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "STDebugConsoleDefine.h"
 
 @interface STDebugConsole : NSObject
 
 + (void) setModel:(STDebugConsoleModel) debugMode;
 
-+ (void) showorCloseConsoleAnimated:(BOOL) animation;
++ (void) setColor:(UIColor *) color withSearchKey:(NSString *) searchKey;
+
++ (void) setDefaultColor:(UIColor *) defaultColor;
 
 @end
