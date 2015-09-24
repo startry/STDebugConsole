@@ -36,7 +36,7 @@ You can customize color base on different searchkey.
 For Example:
 
 ``` Objective-C
-[STDebugConsole setColor:[UIColor greenColor] withSearchKey:[Info]];
+[STDebugConsole setColor:[UIColor greenColor] withSearchKey:"[Info]"];
 ```
 Also you can customize default color
 
