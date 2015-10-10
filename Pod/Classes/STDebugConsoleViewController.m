@@ -9,14 +9,20 @@
 #import "STDebugConsoleViewController.h"
 #import "STDebugCell.h"
 #import "STDebugNavView.h"
+#import "STDebugFilterView.h"
 #import "STDebugCache.h"
 
 static CGFloat const kNavViewHeight = 64.0f;
 
-@interface STDebugConsoleViewController()<UITableViewDataSource, UITableViewDelegate>
+@interface STDebugConsoleViewController()
+<
+UITableViewDataSource,
+UITableViewDelegate
+>
 
-@property (nonatomic, strong) STDebugNavView   *debugNavView;
-@property (nonatomic, strong) UITableView *debugTableView;
+@property (nonatomic, strong) STDebugNavView    *debugNavView;
+@property (nonatomic, strong) UITableView       *debugTableView;
+@property (nonatomic, strong) STDebugFilterView *filterView;
 
 @property (nonatomic, strong) NSArray *logs;
 
@@ -31,6 +37,7 @@ static NSString *const kCellIdentify = @"STDebugViewCellIdentfity";
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     _debugNavView   = [[STDebugNavView alloc] init];
+    _filterView     = [[STDebugFilterView alloc] init];
     _debugTableView = [[UITableView alloc] init];
     
     UIView *tbHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, kNavViewHeight)];
@@ -42,23 +49,26 @@ static NSString *const kCellIdentify = @"STDebugViewCellIdentfity";
     [_debugTableView setDelegate:self];
     
     [self.view addSubview:_debugTableView];
+    [self.view addSubview:_filterView];
     [self.view addSubview:_debugNavView];
     
+    [_filterView setHidden:YES];
+    
     [_debugNavView.backButton addTarget:self action:@selector(didBackButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_debugNavView.filterButton addTarget:self action:@selector(didFilterButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *logs = [[STDebugCache sharedInstance] latestLogArray];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.logs = logs;
-            [_debugTableView reloadData];
-            
-            [self scrollTableViewToBottomAnimated:YES];
-        });
-    });
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFilterTextFieldChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+    
+    [self reloadLogDataAndRefresh];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -69,7 +79,21 @@ static NSString *const kCellIdentify = @"STDebugViewCellIdentfity";
     CGRect bounds = self.view.bounds;
     
     [_debugNavView setFrame:CGRectMake(0, 0, bounds.size.width, navHeight)];
+    [_filterView setFrame:CGRectMake(0, CGRectGetMaxY(_debugNavView.frame), bounds.size.width, bounds.size.height - statusHeight - navHeight)];
     [_debugTableView setFrame:CGRectMake(0, statusHeight, bounds.size.width, bounds.size.height - statusHeight)];
+}
+
+- (void) reloadLogDataAndRefresh{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSArray *logs = [[STDebugCache sharedInstance] latestLogArray];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.logs = logs;
+            [_debugTableView reloadData];
+            
+            [self scrollTableViewToBottomAnimated:YES];
+        });
+    });
 }
 
 #pragma mark - Table Delegate
@@ -103,10 +127,26 @@ static NSString *const kCellIdentify = @"STDebugViewCellIdentfity";
     });
 }
 
+#pragma mark - TextField Events
+- (void) didFilterTextFieldChanged:(NSNotification *) notification{
+    if (notification.object == _filterView.filterTF) {
+        if (_filterView.filterTF.text.length == 0) {
+            [[STDebugCache sharedInstance] setFilterKey:nil];
+        }else{
+            [[STDebugCache sharedInstance] setFilterKey:_filterView.filterTF.text];
+        }
+        
+        [self reloadLogDataAndRefresh];
+    }
+}
+
 #pragma mark - Button Event
 - (void) didBackButtonClicked:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) didFilterButtonClicked:(id)sender{
+    [_filterView setHidden:!_filterView.isHidden];
+}
 
 @end

@@ -64,6 +64,19 @@
     [fileContents componentsSeparatedByCharactersInSet:
      [NSCharacterSet newlineCharacterSet]];
     
+    // exclude lines doesn't contains filter key
+    NSString *filterKey = [_filterKey copy];
+    if (filterKey) {
+        NSMutableArray *keepArray = [NSMutableArray array];
+        for (int i = 0; i < allLinedStrings.count; i++) {
+            NSString *lineStr = allLinedStrings[i];
+            if (NSNotFound != [lineStr rangeOfString:filterKey options:NSCaseInsensitiveSearch].location) {
+                [keepArray addObject:lineStr];
+            }
+        }
+        allLinedStrings = [keepArray copy];
+    }
+    
     NSUInteger count = allLinedStrings.count;
     if (count > 500) {
         return [allLinedStrings subarrayWithRange:NSMakeRange(count - 500, 500)];

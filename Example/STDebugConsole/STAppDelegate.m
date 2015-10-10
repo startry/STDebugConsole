@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [STDebugConsole setModel:STDebugConsoleModelRedirect];
+//    [STDebugConsole setModel:STDebugConsoleModelRedirect];
     
     CGRect bounds = [UIScreen mainScreen].bounds;
     

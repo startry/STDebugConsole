@@ -11,6 +11,7 @@
 @interface STDebugCache : NSObject
 
 @property (nonatomic, strong) UIColor *defaultColor;
+@property (nonatomic, strong) NSString *filterKey;
 
 + (instancetype) sharedInstance;
 
@@ -25,5 +26,6 @@
 - (void) setColor:(UIColor *) color withSearchKey:(NSString *) searchKey;
 
 - (UIColor *) colorWithLog:(NSString *) log;
+
 
 @end

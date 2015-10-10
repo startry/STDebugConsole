@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) UIButton *filterButton;
 
 @end
